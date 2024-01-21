@@ -1,0 +1,190 @@
+﻿
+print("1.Creazione di una classe Persona:")
+print("Crea una classe Persona con attributi come nome, cognome e eta. Inserisci un metodo per stampare le informazioni della persona.")
+
+class Persona:
+    def __init__(self, nome, cognome, eta):
+        self.nome = nome
+        self.cognome = cognome
+        self.eta = eta
+
+    def stampa_informazioni(self):
+        print(f"Informazioni sulla persona:")
+        print(f"Nome: {self.nome}")
+        print(f"Cognome: {self.cognome}")
+        print(f"Eta: {self.eta}")
+
+
+persona1 = Persona("Vitaliia", "Stavytska", 32)
+persona1.stampa_informazioni()
+
+print("2. Gestione di una classe Libro: Creare una classe Libro con attributi come titolo, autore e anno di pubblicazione.")
+print("Aggiungi un metodo per verificare se il libro e recente.")
+
+class Libro:
+    def __init__(self, titolo, autore, anno_pubblicazione):
+        self.titolo = titolo
+        self.autore = autore
+        self.anno_pubblicazione = anno_pubblicazione
+        
+    def is_recent(self, anno_corrente):
+            if anno_corrente-self.anno_pubblicazione>10:
+                print(f"Il libro {self.titolo} non e recente.")
+            else:
+                print(f"Il libro {self.titolo} e recente.")
+
+
+libro1 = Libro("Il Signore degli Anelli", "J.R.R. Tolkien", 1954)
+libro2 = Libro("Harry Potter", "J.K. Rowling", 1997)
+anno_corrente = 2024
+libro1.is_recent(2024)
+libro2.is_recent(anno_corrente)
+anno = 2000
+libro2.is_recent(anno_corrente=anno)
+
+
+
+print("3. Creazione di una classe Cerchio: Definisci una classe Cerchio con un attributo raggio e metodi per calcolare l area e la circonferenza.")
+
+import math
+
+class Cerchio:
+    def __init__(self, raggio):
+        self.raggio = raggio
+
+    def calcola_area(self):
+        area = math.pi * (self.raggio ** 2)
+        return area
+
+    def calcola_circonferenza(self):
+        circonferenza = 2 * math.pi * self.raggio
+        return circonferenza
+
+
+raggio_cerchio = 5
+mio_cerchio = Cerchio(raggio_cerchio)
+
+print(f"Raggio del cerchio: {mio_cerchio.raggio}")
+print(f"Area del cerchio: {mio_cerchio.calcola_area()}")
+print(f"Circonferenza del cerchio: {mio_cerchio.calcola_circonferenza()}")
+
+
+
+print("4. Simulazione di un Conto Bancario: Crea una classe ContoBancario con attributi ")
+print("saldo e metodo per depositare e prelevare denaro.")
+
+class ContoBancario:
+    def __init__(self, saldo_iniziale=0):
+        self.saldo = saldo_iniziale
+
+    def deposita(self, importo):
+        if importo > 0:
+            self.saldo += importo
+            print(f"Deposito di {importo} effettuato. Saldo attuale: {self.saldo}")
+        else:
+            print("L'importo del deposito deve essere maggiore di zero.")
+
+    def preleva(self, importo):
+        if importo > 0 and importo <= self.saldo:
+            self.saldo -= importo
+            print(f"Prelevamento di {importo} effettuato. Saldo attuale: {self.saldo}")
+        elif importo <= 0:
+            print("L'importo del prelevamento deve essere maggiore di zero.")
+        else:
+            print("Fondi insufficienti per il prelevamento.")
+
+
+conto_mio = ContoBancario(1000)
+
+conto_mio.deposita(500)
+conto_mio.preleva(200)
+conto_mio.preleva(1000)
+
+print("5.Gestione di una classe Prodotto: Crea una classe Prodotto con attributi come nome, prezzo e quantita disponibile")
+print("Aggiungi metodi per calcolare il costo totale e verificare la disponibilita.")
+
+
+class Prodotto:
+    def __init__(self, nome, prezzo, quantita_disponibile):
+        self.nome = nome
+        self.prezzo = prezzo
+        self.quantita_disponibile = quantita_disponibile
+        
+    def calcolo_costo_totale(self, quantita):
+        if quantita > 0:
+            costo_totale = quantita * self.prezzo
+            return costo_totale
+        else:
+            print("La quantita deve essere maggiore di zero.")
+            return None
+
+    def verifica_disponibilita(self, quantita):
+        if quantita > 0 and quantita <= self.quantita_disponibile:
+            return True
+        elif quantita < 0:
+            print("La quantita deve essere maggiore di zero.")
+            return False
+        else:
+            print("Quantita non è disponibile.")
+            return False
+        
+prodotto_1 = Prodotto("Prodotto A", 10.99, 50)
+
+quantita_da_acquistare = 10
+if prodotto_1.verifica_disponibilita(quantita_da_acquistare):
+    costo_totale = prodotto_1.calcolo_costo_totale(quantita_da_acquistare)
+    print(f"Costo totale per {quantita_da_acquistare} unità di {prodotto_1.nome}: {costo_totale} euro")
+else:
+    print(f"Acquisto di {quantita_da_acquistare} unità di {prodotto_1.nome} non disponibile.")
+
+
+
+
+print("6.Inventa una tua classe che ti possa essere utile per future analisi dati.")
+
+class DatiDurataSogno:
+    def __init__(self):
+        self.ore_di_sonno = []
+
+    def aggiungi_durata_sonno(self, durata):
+        if durata > 0:
+            self.ore_di_sonno.append(durata)
+            print(f"Durata del sogno aggiunta: {durata} ore")
+        else:
+            print("La durata del sogno deve essere maggiore di zero.")
+
+    def media_durata_sonno(self):
+        if not self.ore_di_sonno:
+            print("Nessuna durata del sogno registrata.")
+            return None
+        else:
+            media = sum(self.ore_di_sonno) / len(self.ore_di_sonno)
+            return media
+
+    def durata_minima(self):
+        if not self.ore_di_sonno:
+            print("Nessuna durata del sogno registrata.")
+            return None
+        else:
+            minima = min(self.ore_di_sonno)
+            return minima
+
+    def durata_massima(self):
+        if not self.ore_di_sonno:
+            print("Nessuna durata del sogno registrata.")
+            return None
+        else:
+            massima = max(self.ore_di_sonno)
+            return massima
+
+
+dati_sogno = DatiDurataSogno()
+
+dati_sogno.aggiungi_durata_sonno(7)
+dati_sogno.aggiungi_durata_sonno(8)
+dati_sogno.aggiungi_durata_sonno(6.5)
+
+print(f"Media durata del sogno: {dati_sogno.media_durata_sonno()} ore")
+print(f"Durata minima del sogno: {dati_sogno.durata_minima()} ore")
+print(f"Durata massima del sogno: {dati_sogno.durata_massima()} ore")
+
